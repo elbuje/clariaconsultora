@@ -1,21 +1,27 @@
 # 📊 Status del Proyecto — Claria Consultora
 
 **Última actualización:** 2026-09-15  
-**Estado General:** 🟢 En Desarrollo Activo (Dev Server Activo)  
-**Entorno Dev:** `http://localhost:8016` (Hostinger VPS `72.62.107.109:8016`)
+**Estado General:** 🟢 En Desarrollo Activo & Listo para Producción  
+**Entorno Dev:** `http://localhost:8016` (Hostinger VPS `72.62.107.109:8016`)  
+**Repositorio GitHub:** [`https://github.com/elbuje/clariaconsultora`](https://github.com/elbuje/clariaconsultora) (Rama `main` sincronizada)
 
 ---
 
 ## 🚀 Tareas Realizadas Recientemente
 - [x] Instalación de la estructura LLM Wiki (3 capas) con flujos `.agent/workflows/`.
 - [x] Conexión de nodo en MetaWiki Global `~/.agent/wiki/nodes/claria_consultora.md` y registro en `~/.agent/wiki/index.md`.
-- [x] Desarrollo frontend completo con diseño UI/UX premium para consultoría estratégica.
-- [x] Desarrollo del simulador interactivo de Diagnóstico Empresarial.
-- [x] Configuración del servidor de desarrollo Node.js/Express en puerto 8016.
-
----
-
-## 📋 Próximos Pasos (Backlog)
-- [ ] Validar contenidos y textos finales de los socios/directores de Claria Consultora.
-- [ ] Integrar recepción de formularios a WhatsApp / Email / CRM.
-- [ ] Preparar pipeline de despliegue a producción en `clariaconsultora.com.ar`.
+- [x] Integración de las imágenes reales: portada (boardroom), servicios 1 a 4 y retrato de Mariela.
+- [x] Corrección y respeto de los marcos de diseño estilizados con paddings y border-radius en `index.html`.
+- [x] Creación de `favicon.svg`, `favicon.png` y `favicon.ico` con el isotipo oficial "C".
+- [x] Actualización de email oficial a `info@clariaconsultora.com.ar` y teléfono protegido tras icono de WhatsApp.
+- [x] Implementación de arquitectura SEO con URLs amigables por cada servicio:
+  - `/servicios/customer-experience/`
+  - `/servicios/optimizacion-operacional/`
+  - `/servicios/transformacion-cultural/`
+  - `/servicios/escalabilidad/`
+  - `/metodo/`
+  - `/acerca-de/`
+  - `/contacto/`
+- [x] Implementación de OpenGraph, Twitter Cards, Canonical tags y Schema JSON-LD `ProfessionalService`, `Service`, `Person` y `ContactPage`.
+- [x] Generación de `robots.txt`, `sitemap.xml` (8 URLs indexables) y `llms.txt`.
+- [x] Repositorio privado de GitHub creado y empujado en `https://github.com/elbuje/clariaconsultora`.
