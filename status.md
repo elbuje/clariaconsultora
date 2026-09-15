@@ -15,6 +15,7 @@
 - [x] Creación de `favicon.svg`, `favicon.png` y `favicon.ico` con el isotipo oficial "C".
 - [x] Actualización de email oficial a `info@clariaconsultora.com.ar` y teléfono protegido tras icono de WhatsApp.
 - [x] Implementación de arquitectura SEO con URLs amigables por cada servicio:
+  - `/servicios/` (Catálogo general)
   - `/servicios/customer-experience/`
   - `/servicios/optimizacion-operacional/`
   - `/servicios/transformacion-cultural/`
@@ -22,6 +23,9 @@
   - `/metodo/`
   - `/acerca-de/`
   - `/contacto/`
+- [x] Unificación de navegación limpia en el navbar (sin anclas con hash `#`).
 - [x] Implementación de OpenGraph, Twitter Cards, Canonical tags y Schema JSON-LD `ProfessionalService`, `Service`, `Person` y `ContactPage`.
-- [x] Generación de `robots.txt`, `sitemap.xml` (8 URLs indexables) y `llms.txt`.
-- [x] Repositorio privado de GitHub creado y empujado en `https://github.com/elbuje/clariaconsultora`.
+- [x] Generación de `robots.txt`, `sitemap.xml` (9 URLs indexables) y `llms.txt`.
+- [x] Repositorio de GitHub sincronizado en `https://github.com/elbuje/clariaconsultora`.
+- [x] Pipeline CI/CD Auto-Deploy configurado vía Webhook de Hostinger (despliegue automático con cada `git push origin main`).
+- [x] Verificación en producción: Todas las rutas responden `200 OK` en `https://clariaconsultora.com.ar`.
