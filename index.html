@@ -5,9 +5,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claria — Consultoría en Operaciones y Experiencia</title>
 <meta name="description" content="Claria conecta los datos operativos de tu empresa con la experiencia de las personas que la sostienen. Customer Experience, operaciones, cultura y escalabilidad.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://clariaconsultora.com.ar/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
+
+<!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+<meta property="og:site_name" content="Claria Consultora">
+<meta property="og:title" content="Claria — Consultoría en Operaciones y Experiencia">
+<meta property="og:description" content="Conectamos los datos operativos de tu empresa con la experiencia de las personas que la sostienen. Customer Experience, operaciones, cultura y escalabilidad.">
+<meta property="og:image" content="https://clariaconsultora.com.ar/images/img1.jpg">
+<meta property="og:url" content="https://clariaconsultora.com.ar/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claria — Consultoría en Operaciones y Experiencia">
+<meta name="twitter:description" content="Conectamos los datos operativos de tu empresa con la experiencia de las personas que la sostienen. Customer Experience, operaciones, cultura y escalabilidad.">
+<meta name="twitter:image" content="https://clariaconsultora.com.ar/images/img1.jpg">
+
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Schema JSON-LD Structured Data (ProfessionalService) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Claria Consultora",
+  "url": "https://clariaconsultora.com.ar",
+  "logo": "https://clariaconsultora.com.ar/favicon.png",
+  "image": "https://clariaconsultora.com.ar/images/img1.jpg",
+  "description": "Consultoría en Operaciones, Customer Experience, Transformación Cultural y Escalabilidad para empresas y directivos.",
+  "email": "info@clariaconsultora.com.ar",
+  "founder": {
+    "@type": "Person",
+    "name": "Mariela de los Milagros Defant",
+    "jobTitle": "Directora & Consultora Senior",
+    "sameAs": "https://www.linkedin.com/in/mdelosmilagrosdefant",
+    "image": "https://clariaconsultora.com.ar/images/mariela.jpg"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/mdelosmilagrosdefant"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Consultoría",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Transformación de Customer Experience",
+          "description": "Rediseño de atención al cliente de punta a punta, mejora de NPS (+10 a +15 puntos) y retención."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Optimización Operacional",
+          "description": "Reingeniería de flujos operativos, eliminación de desperdicios y reducción de costos (-5% a -15%)."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Transformación Cultural & Liderazgo",
+          "description": "Mentoría ejecutiva, desarrollo de equipos de alto rendimiento y mejora del clima laboral."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Escalabilidad & Crecimiento Organizado",
+          "description": "Estructuras organizacionales claras, manuales de procesos y delegación efectiva."
+        }
+      }
+    ]
+  }
+}
+</script>
+
 <style>
   :root{
     --cream:#EFE2C4;
@@ -90,9 +181,9 @@
   .hero-image{
     aspect-ratio:4/3.4; border-radius:var(--radius); overflow:hidden;
     background:linear-gradient(150deg,#C9C3A9,#8F9270 65%,#5C6448);
-    display:flex; align-items:center; justify-content:center; text-align:center;
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;
   }
-  .hero-image img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .hero-image img{ width:100%; height:100%; object-fit:cover; border-radius:12px; display:block; }
   .float-card{
     position:absolute; left:-8%; bottom:-8%; background:var(--white); border-radius:16px;
     padding:18px 20px; max-width:250px; box-shadow:0 18px 40px -18px rgba(43,42,34,0.35);
@@ -174,9 +265,9 @@
   /* ---------- ACERCA DE MÍ ---------- */
   .about-grid{ display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start; }
   @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:28px; } }
-  .about-photo{ width:100%; max-width:220px; aspect-ratio:4/4.8; border-radius:var(--radius); overflow:hidden; background:linear-gradient(160deg,#8b8b7c,#3b3b32); display:flex; align-items:center; justify-content:center; }
+  .about-photo{ width:100%; max-width:220px; aspect-ratio:4/4.8; border-radius:var(--radius); overflow:hidden; background:linear-gradient(160deg,#8b8b7c,#3b3b32); display:flex; align-items:center; justify-content:center; padding:18px; text-align:center; }
   @media (max-width:900px){ .about-photo{ max-width:170px; } }
-  .about-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; border-radius:12px; display:block; }
   .about-copy p{ color:#413e33; font-size:15.5px; margin:0 0 16px; }
   .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:30px 0; }
   @media (max-width:640px){ .stat-grid{ grid-template-columns:1fr 1fr; } }
@@ -463,9 +554,9 @@
         <h2>Empecemos con una charla de 30 minutos.</h2>
         <p>Un diagnóstico y una lectura clara sobre tu operación actual, orientada a identificar oportunidades y establecer las prioridades que realmente hacen la diferencia.</p>
         <div class="social-row">
-          <a href="https://wa.me/5491151489944" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-          <button type="button" id="openMailForm" aria-label="Escribir un mensaje">✉</button>
-          <a href="https://www.linkedin.com/in/mdelosmilagrosdefant" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          <a href="https://wa.me/5491151489944" target="_blank" rel="noopener" aria-label="WhatsApp" title="Contactar por WhatsApp">💬</a>
+          <button type="button" id="openMailForm" aria-label="Escribir un correo electrónico" title="Escribir un correo electrónico">✉</button>
+          <a href="https://www.linkedin.com/in/mdelosmilagrosdefant" target="_blank" rel="noopener" aria-label="LinkedIn" title="Perfil de LinkedIn">in</a>
         </div>
       </div>
     </div>
@@ -476,12 +567,12 @@
       <div class="mail-modal-card" role="dialog" aria-modal="true" aria-labelledby="mailModalTitle">
         <button type="button" class="mail-modal-close" id="mailModalClose" aria-label="Cerrar">✕</button>
         <h3 id="mailModalTitle">Escribinos</h3>
-        <p class="mail-modal-sub">Completá tus datos y se va a abrir tu programa de mail con el mensaje ya armado, listo para enviar a mariela.defant@hotmail.com.</p>
+        <p class="mail-modal-sub">Completá tus datos y se va a abrir tu programa de correo con el mensaje ya armado, listo para enviar a info@clariaconsultora.com.ar.</p>
         <form id="mailForm">
           <label for="mfNombre">Nombre y Apellido</label>
           <input type="text" id="mfNombre" name="nombre" required>
-          <label for="mfTelefono">Teléfono</label>
-          <input type="tel" id="mfTelefono" name="telefono" required>
+          <label for="mfTelefono">Teléfono (opcional)</label>
+          <input type="tel" id="mfTelefono" name="telefono">
           <label for="mfMail">Mail</label>
           <input type="email" id="mfMail" name="mail" required>
           <label for="mfComentarios">Comentarios</label>
@@ -625,11 +716,11 @@
     const asunto = 'Consulta desde clariaconsultora.com.ar — ' + nombre;
     const cuerpo =
       'Nombre y Apellido: ' + nombre + '\n' +
-      'Teléfono: ' + telefono + '\n' +
+      (telefono ? 'Teléfono: ' + telefono + '\n' : '') +
       'Mail: ' + mail + '\n\n' +
       'Comentarios:\n' + comentarios;
 
-    const mailtoUrl = 'mailto:mariela.defant@hotmail.com'
+    const mailtoUrl = 'mailto:info@clariaconsultora.com.ar'
       + '?subject=' + encodeURIComponent(asunto)
       + '&body=' + encodeURIComponent(cuerpo);
 

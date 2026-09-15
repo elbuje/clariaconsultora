@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <circle cx="100" cy="100" r="96" fill="#F6ECD4"/>
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#454B30" stroke-width="4"/>
+  <circle cx="100" cy="100" r="74" fill="none" stroke="#6B7256" stroke-width="2"/>
+  <text x="100" y="134" text-anchor="middle" font-family="'Lora', Georgia, 'Times New Roman', serif" font-weight="600" font-style="italic" font-size="94" fill="#454B30">C</text>
+</svg>
