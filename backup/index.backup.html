@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claria — Consultoría en Operaciones y Experiencia</title>
+<meta name="description" content="Claria conecta los datos operativos de tu empresa con la experiencia de las personas que la sostienen. Customer Experience, operaciones, cultura y escalabilidad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EFE2C4;
+    --card:#F6ECD4;
+    --card-shade:#E6D3A8;
+    --olive:#454B30;
+    --olive-light:#6B7256;
+    --ink:#2B2A22;
+    --muted:#78694C;
+    --border:#DDC79A;
+    --white:#FFFBF2;
+    --radius:20px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:'Inter', sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Lora', serif; font-weight:500; color:var(--ink); line-height:1.18; margin:0; }
+  a{color:inherit;} img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+  a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--olive); outline-offset:3px; }
+
+  .eyebrow{
+    font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--olive-light); margin-bottom:14px; display:block;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{ position:sticky; top:0; z-index:50; background:rgba(248,244,233,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--border); }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:16px 32px; max-width:1180px; margin:0 auto; gap:20px; }
+  .brand{ display:flex; align-items:center; gap:20px; text-decoration:none; }
+  .brand-mark{ flex:none; border-radius:50%; width:clamp(28px,5vw,57px); height:clamp(28px,5vw,57px); }
+  .brand-text .name{ font-family:'Lora'; font-size:clamp(16px,3vw,29px); color:var(--ink); display:block; line-height:1.05; }
+  .brand-text .tag{ font-size:clamp(9px,1.3vw,15px); letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); display:block; line-height:1.3; }
+  nav.links{ display:flex; gap:32px; align-items:center; }
+  nav.links a.navlink{ text-decoration:none; font-size:14.5px; color:var(--ink); padding:6px 0; border-bottom:1px solid transparent; transition:border-color .2s ease, color .2s ease; }
+  nav.links a.navlink:hover{ border-color:var(--olive); }
+  nav.links a.navlink.active{ color:var(--olive); border-color:var(--olive); font-weight:600; }
+  .nav-cta{ background:var(--olive); color:var(--white) !important; padding:11px 22px; border-radius:100px; text-decoration:none; font-size:14px; font-weight:500; transition:background .2s ease, transform .2s ease; }
+  .nav-cta:hover{ background:var(--olive-light); transform:translateY(-1px); }
+  .burger{ display:none; background:none; border:none; cursor:pointer; padding:8px; flex:none; }
+  .burger span{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; }
+  @media (max-width:900px){
+    nav.links{ position:absolute; top:100%; left:0; right:0; background:var(--cream); flex-direction:column; align-items:flex-start; padding:26px 32px; gap:20px; transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease; max-height:70vh; overflow-y:auto; box-shadow:0 16px 30px -14px rgba(43,42,34,0.25); border-bottom:1px solid var(--border); }
+    nav.links.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
+    .burger{ display:block; }
+  }
+
+  section{ padding:0; }
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head h2{ font-size:clamp(26px,3.2vw,36px); }
+  .section-head p{ margin-top:14px; color:var(--muted); font-size:16px; }
+
+  /* ---------- SECCIONES DESPLEGABLES (apertura solo desde el header) ---------- */
+  .reveal{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .7s cubic-bezier(.65,0,.35,1); }
+  .reveal > .reveal-inner{ overflow:hidden; min-height:0; }
+  .reveal > .reveal-inner > .reveal-pad{ padding:90px 0; opacity:0; transform:translateY(-18px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.open{ grid-template-rows:1fr; }
+  .reveal.open > .reveal-inner > .reveal-pad{ opacity:1; transform:translateY(0); transition-delay:.2s; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top:64px; padding-bottom:80px; }
+  .hero-grid{ display:grid; grid-template-columns:1fr 0.95fr; gap:56px; align-items:center; }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  .pill{ display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); background:var(--card); padding:8px 16px; border-radius:100px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--olive-light); font-weight:600; }
+  .pill::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--olive-light); }
+  h1.hero-title{ font-size:clamp(34px,4.6vw,54px); margin-top:22px; max-width:13ch; }
+  .hero-copy{ margin-top:20px; max-width:50ch; color:#4a473c; font-size:16.5px; }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+  .btn-primary{ background:var(--olive); color:var(--white); text-decoration:none; padding:15px 26px; border-radius:100px; font-size:14.5px; font-weight:500; display:inline-flex; align-items:center; gap:8px; transition:background .2s ease, transform .2s ease; border:none; cursor:pointer; }
+  .btn-primary:hover{ background:var(--olive-light); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; color:var(--ink); text-decoration:none; padding:15px 26px; border-radius:100px; font-size:14.5px; font-weight:500; border:1px solid var(--border); transition:border-color .2s ease, background .2s ease; }
+  .btn-outline:hover{ background:var(--card); border-color:var(--ink); }
+
+  .hero-visual{ position:relative; }
+  .hero-image{
+    aspect-ratio:4/3.4; border-radius:var(--radius); overflow:hidden;
+    background:linear-gradient(150deg,#C9C3A9,#8F9270 65%,#5C6448);
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:24px;
+  }
+  .hero-image img{ width:100%; height:100%; object-fit:cover; }
+  .hero-image span{ color:var(--white); font-size:13px; opacity:.85; max-width:26ch; }
+  .float-card{
+    position:absolute; left:-8%; bottom:-8%; background:var(--white); border-radius:16px;
+    padding:18px 20px; max-width:250px; box-shadow:0 18px 40px -18px rgba(43,42,34,0.35);
+    display:flex; gap:12px; align-items:flex-start;
+    animation:floatin .7s ease forwards; opacity:0; transform:translateY(14px);
+    animation-delay:.5s;
+  }
+  @media (max-width:900px){ .float-card{ position:static; margin-top:-40px; margin-left:16px; max-width:none; } }
+  .float-card .icon{ width:30px; height:30px; border-radius:50%; background:var(--card-shade); flex:none; display:flex; align-items:center; justify-content:center; }
+  .float-card b{ font-size:14px; display:block; margin-bottom:3px; }
+  .float-card p{ margin:0; font-size:12.5px; color:var(--muted); }
+  @keyframes floatin{ to{opacity:1; transform:translateY(0);} }
+  @media (prefers-reduced-motion:reduce){ .float-card{ animation:none; opacity:1; transform:none; } }
+
+  /* ---------- SERVICIOS ---------- */
+  .servicios-list{ display:flex; flex-direction:column; gap:18px; }
+  .servicio{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:30px 32px; }
+  .servicio-head{ display:flex; align-items:center; gap:20px; cursor:pointer; list-style:none; }
+  .servicio-head::-webkit-details-marker{ display:none; }
+  .servicio-thumb{
+    width:64px; height:64px; border-radius:14px; flex:none; overflow:hidden;
+    background:linear-gradient(160deg,#D9D2B6,#8F9270);
+  }
+  .servicio-thumb img{ width:100%; height:100%; object-fit:cover; }
+  .servicio-num{ font-family:'Lora'; font-size:13px; color:var(--olive-light); margin-bottom:4px; display:block; }
+  .servicio-title-row{ flex:1; min-width:0; }
+  .servicio-title-row h3{ font-size:21px; }
+  .servicio-teaser{ color:var(--muted); font-size:14.5px; margin-top:6px; }
+  .chevron{ flex:none; width:20px; height:20px; transition:transform .3s ease; color:var(--ink); }
+  details[open] .chevron{ transform:rotate(180deg); }
+
+  .servicio-body{ display:grid; grid-template-columns:1fr 1fr 1.1fr; gap:28px; margin-top:30px; padding-top:28px; border-top:1px solid var(--border); }
+  @media (max-width:820px){ .servicio-body{ grid-template-columns:1fr; } }
+  .servicio-col h4{ font-family:'Inter'; font-weight:600; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin:0 0 14px; }
+  .servicio-col ul{ margin:0; padding:0; list-style:none; }
+  .servicio-col li{ font-size:14.5px; padding:0 0 12px 20px; position:relative; color:#413e33; }
+  .servicio-col li::before{ content:"–"; position:absolute; left:0; color:var(--muted); }
+  .servicio-col.cta-flow li::before{ content:"→"; color:var(--olive-light); }
+  .servicio-col.results{ background:var(--card-shade); border-radius:14px; padding:20px 22px; }
+  .servicio-col.results li::before{ content:"✓"; color:var(--olive); }
+  .results-note{ font-size:11.5px; color:var(--muted); margin-top:6px; line-height:1.5; }
+  .servicio-cta{ margin-top:24px; }
+
+  /* ---------- MÉTODO ---------- */
+  .metodo-panel{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:56px; display:grid; grid-template-columns:0.85fr 1.15fr; gap:48px; }
+  @media (max-width:860px){ .metodo-panel{ grid-template-columns:1fr; padding:34px 26px; } }
+  .metodo-steps{ display:flex; flex-direction:column; }
+  .metodo-step{ display:flex; gap:18px; padding:20px 0; border-top:1px solid var(--border); }
+  .metodo-step:first-child{ border-top:none; padding-top:0; }
+  .step-num{ width:34px; height:34px; border-radius:50%; background:var(--cream); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:'Lora'; font-size:13px; flex:none; color:var(--olive); }
+  .metodo-step h4{ font-family:'Lora'; font-size:16.5px; font-weight:500; margin-bottom:6px; }
+  .metodo-step p{ margin:0; font-size:14px; color:var(--muted); }
+
+  /* ---------- CONTACT BAND ---------- */
+  .cta-band{ background:var(--olive); border-radius:28px; padding:70px 40px; text-align:center; color:var(--white); }
+  .cta-band .eyebrow{ color:#C7CBAE; text-align:center; }
+  .cta-band h2{ color:var(--white); font-size:clamp(26px,3.4vw,38px); max-width:20ch; margin:0 auto; }
+  .cta-band p{ color:#DADCC6; max-width:52ch; margin:18px auto 30px; font-size:15.5px; }
+  .cta-band .btn-primary{ background:var(--white); color:var(--olive); margin:0 auto; }
+  .cta-band .btn-primary:hover{ background:var(--card-shade); }
+  .social-row{ display:flex; justify-content:center; gap:14px; margin-top:32px; }
+  .social-row a, .social-row button{ width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,255,255,0.35); background:none; display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--white); font-size:16px; font-family:inherit; cursor:pointer; transition:background .2s ease, border-color .2s ease; }
+  .social-row a:hover, .social-row button:hover{ background:rgba(255,255,255,0.12); border-color:var(--white); }
+
+  /* ---------- MODAL DE CONTACTO POR MAIL ---------- */
+  .mail-modal{ position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity .25s ease; }
+  .mail-modal.open{ opacity:1; pointer-events:auto; }
+  .mail-modal-backdrop{ position:absolute; inset:0; background:rgba(43,42,34,0.55); }
+  .mail-modal-card{ position:relative; background:var(--card); border-radius:var(--radius); padding:36px; max-width:440px; width:100%; max-height:86vh; overflow-y:auto; transform:translateY(14px); transition:transform .25s ease; }
+  .mail-modal.open .mail-modal-card{ transform:translateY(0); }
+  .mail-modal-card h3{ font-size:22px; margin-bottom:10px; }
+  .mail-modal-sub{ font-size:13.5px; color:var(--muted); margin-bottom:22px; }
+  .mail-modal-close{ position:absolute; top:18px; right:18px; width:30px; height:30px; border-radius:50%; border:1px solid var(--border); background:none; cursor:pointer; font-size:13px; color:var(--ink); }
+  #mailForm{ display:flex; flex-direction:column; gap:14px; }
+  #mailForm label{ font-size:13px; color:var(--muted); margin-bottom:-8px; }
+  #mailForm input, #mailForm textarea{ font-family:'Inter'; font-size:14.5px; padding:12px 14px; border:1px solid var(--border); background:var(--cream); border-radius:10px; color:var(--ink); }
+  #mailForm input:focus, #mailForm textarea:focus{ outline:2px solid var(--olive-light); outline-offset:1px; }
+
+  /* ---------- ACERCA DE MÍ ---------- */
+  .about-grid{ display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start; }
+  @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:28px; } }
+  .about-photo{ width:100%; max-width:220px; aspect-ratio:4/4.8; border-radius:var(--radius); overflow:hidden; background:linear-gradient(160deg,#8b8b7c,#3b3b32); display:flex; align-items:center; justify-content:center; padding:24px; text-align:center; }
+  @media (max-width:900px){ .about-photo{ max-width:170px; } }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; }
+  .about-photo span{ color:var(--white); font-size:13px; opacity:.8; }
+  .about-copy p{ color:#413e33; font-size:15.5px; margin:0 0 16px; }
+  .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:30px 0; }
+  @media (max-width:640px){ .stat-grid{ grid-template-columns:1fr 1fr; } }
+  .stat-card{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; }
+  .stat-card b{ font-family:'Lora'; font-size:24px; display:block; color:var(--ink); }
+  .stat-card span{ font-size:12px; color:var(--muted); line-height:1.4; display:block; margin-top:4px; }
+  .check-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; margin:18px 0 30px; }
+  @media (max-width:560px){ .check-grid{ grid-template-columns:1fr; } }
+  .check-grid li{ list-style:none; padding-left:22px; position:relative; font-size:14.5px; color:#413e33; }
+  .check-grid li::before{ content:"✓"; position:absolute; left:0; color:var(--olive); }
+  .quote-line{ border-left:2px solid var(--olive); padding-left:18px; font-family:'Lora'; font-style:italic; font-size:16px; color:var(--ink); }
+
+  footer{ padding:36px 0; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13px; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <svg class="brand-mark" width="38" height="38" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="100" cy="100" r="92" fill="#F6ECD4" stroke="#454B30" stroke-width="3"/>
+        <circle cx="100" cy="100" r="76" fill="none" stroke="#6B7256" stroke-width="1.5"/>
+        <text x="100" y="132" text-anchor="middle" font-family="'Lora', Georgia, 'Times New Roman', serif" font-weight="500" font-style="italic" font-size="86" fill="#454B30">C</text>
+      </svg>
+      <span class="brand-text"><span class="name">Claria</span><span class="tag">Consultoría en Operaciones y Experiencia</span></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a class="navlink" href="#servicios">Servicios</a>
+      <a class="navlink" href="#metodo">Método</a>
+      <a class="navlink" href="#acerca">Acerca de</a>
+      <a class="navlink" href="#contacto">Contacto</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill">Para empresas y directivos</span>
+        <h1 class="hero-title">Detrás de cada gran número en tu negocio, hay un equipo que lo hace posible.</h1>
+        <p class="hero-copy">Conectamos los datos operativos de tu empresa con la experiencia de las personas que la sostienen. Optimizamos procesos y empoderamos a tus líderes para diseñar soluciones simples que mejoren márgenes y fidelicen clientes.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="#contacto">Charla de diagnóstico gratis (30 min) →</a>
+          <a class="btn-outline" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image">
+          <div style="font-family:'Lora',serif; color:var(--white); font-size:18px;">Claria Consultora</div>
+        </div>
+        <div class="float-card">
+          <span class="icon">🛡</span>
+          <div><b>Confidencial</b><p>Discreción y confidencialidad como valor garantizado en cada intervención.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="reveal" aria-hidden="true"><div class="reveal-inner"><div class="reveal-pad">
+    <div class="wrap">
+      <span class="eyebrow">Servicios</span>
+      <div class="section-head">
+        <h2>Cuatro módulos, una misma mirada.</h2>
+        <p>Se toman por separado o como programa integral. Cada módulo comienza con un diagnóstico corto y cierra con métricas acordadas de antemano.</p>
+      </div>
+
+      <div class="servicios-list">
+
+        <details class="servicio" open>
+          <summary class="servicio-head">
+            <div class="servicio-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:bold;">01</div>
+            <div class="servicio-title-row">
+              <span class="servicio-num">01</span>
+              <h3>Transformación de Customer Experience</h3>
+              <p class="servicio-teaser">Convertimos la satisfacción de tu cliente en tu mayor ventaja competitiva.</p>
+            </div>
+            <svg class="chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="servicio-body">
+            <div class="servicio-col">
+              <h4>Qué resolvemos</h4>
+              <ul>
+                <li>Clientes que se van a la competencia sin avisar</li>
+                <li>Equipos desmotivados y rotación constante</li>
+                <li>Procesos lentos y llamadas interminables</li>
+                <li>Reputación online por debajo del servicio real</li>
+              </ul>
+            </div>
+            <div class="servicio-col cta-flow">
+              <h4>Cómo trabajamos</h4>
+              <ul>
+                <li>Rediseño de procesos de atención de punta a punta</li>
+                <li>Capacitación con sentido: el equipo entiende por qué lo hace</li>
+                <li>Cultura de excepciones resueltas, no escaladas</li>
+                <li>Métricas que importan: NPS y resolución, no solo volumen</li>
+              </ul>
+            </div>
+            <div class="servicio-col results">
+              <h4>Resultados esperables</h4>
+              <ul>
+                <li>NPS: mejora de referencia de 10 a 15 puntos</li>
+                <li>Rotación de personal: reducción de referencia del 10 al 20%</li>
+                <li>Retención de clientes: incremento de referencia superior al 10%</li>
+                <li>Menor costo operativo por caso atendido</li>
+              </ul>
+              <p class="results-note">Rangos de referencia basados en proyectos previos; se acuerdan metas propias en cada empresa.</p>
+            </div>
+          </div>
+          <div class="servicio-cta"><a class="btn-primary" href="#contacto">Charla de diagnóstico gratis (30 min) →</a></div>
+        </details>
+
+        <details class="servicio">
+          <summary class="servicio-head">
+            <div class="servicio-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:bold;">02</div>
+            <div class="servicio-title-row">
+              <span class="servicio-num">02</span>
+              <h3>Optimización Operacional</h3>
+              <p class="servicio-teaser">Ordenamos tu operativa para crecer sin fricciones.</p>
+            </div>
+            <svg class="chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="servicio-body">
+            <div class="servicio-col">
+              <h4>Qué resolvemos</h4>
+              <ul>
+                <li>Procesos manuales: Excel, mails, llamadas</li>
+                <li>Costos operativos poco claros</li>
+                <li>Errores repetidos por falta de documentación</li>
+                <li>Capacidad limitada para crecer</li>
+              </ul>
+            </div>
+            <div class="servicio-col cta-flow">
+              <h4>Cómo trabajamos</h4>
+              <ul>
+                <li>Mapeamos los flujos actuales, sin prejuzgar</li>
+                <li>Identificamos desperdicios de tiempo y dinero</li>
+                <li>Automatizamos lo que se puede, con herramientas accesibles</li>
+                <li>Documentamos para que el proceso se pueda replicar</li>
+              </ul>
+            </div>
+            <div class="servicio-col results">
+              <h4>Resultados esperables</h4>
+              <ul>
+                <li>Reducción de referencia del 5 al 15% en costos operacionales</li>
+                <li>Incremento de referencia del 15 al 25% en productividad</li>
+                <li>Menos errores, procesos más predecibles</li>
+                <li>Equipos con tiempo para pensar, no solo ejecutar</li>
+              </ul>
+              <p class="results-note">Rangos de referencia basados en proyectos previos; se acuerdan metas propias en cada empresa.</p>
+            </div>
+          </div>
+          <div class="servicio-cta"><a class="btn-primary" href="#contacto">Charla de diagnóstico gratis (30 min) →</a></div>
+        </details>
+
+        <details class="servicio">
+          <summary class="servicio-head">
+            <div class="servicio-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:bold;">03</div>
+            <div class="servicio-title-row">
+              <span class="servicio-num">03</span>
+              <h3>Transformación Cultural &amp; Liderazgo</h3>
+              <p class="servicio-teaser">Equipos comprometidos, resultados medibles.</p>
+            </div>
+            <svg class="chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="servicio-body">
+            <div class="servicio-col">
+              <h4>Qué resolvemos</h4>
+              <ul>
+                <li>Talento que se va y no está claro por qué</li>
+                <li>Trabajo en silos, comunicación que no fluye</li>
+                <li>Líderes que ordenan pero no inspiran</li>
+                <li>Clima interno tenso, alta rotación</li>
+              </ul>
+            </div>
+            <div class="servicio-col cta-flow">
+              <h4>Cómo trabajamos</h4>
+              <ul>
+                <li>Diagnóstico honesto de la cultura actual</li>
+                <li>Programa de liderazgo con mentoría real, no charlas</li>
+                <li>Comunicación transparente instalada</li>
+                <li>Carrera clara según las fortalezas de cada perfil</li>
+              </ul>
+            </div>
+            <div class="servicio-col results">
+              <h4>Resultados esperables</h4>
+              <ul>
+                <li>Rotación: reducción de referencia del 10 al 20%</li>
+                <li>Mejora notable de clima (encuestas y escucha en off)</li>
+                <li>Líderes más seguros y conectados con sus equipos</li>
+                <li>Reputación como buen lugar para trabajar</li>
+              </ul>
+              <p class="results-note">Rangos de referencia basados en proyectos previos; se acuerdan metas propias en cada empresa.</p>
+            </div>
+          </div>
+          <div class="servicio-cta"><a class="btn-primary" href="#contacto">Charla de diagnóstico gratis (30 min) →</a></div>
+        </details>
+
+        <details class="servicio">
+          <summary class="servicio-head">
+            <div class="servicio-thumb" style="display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:bold;">04</div>
+            <div class="servicio-title-row">
+              <span class="servicio-num">04</span>
+              <h3>Escalabilidad &amp; Crecimiento Organizado</h3>
+              <p class="servicio-teaser">Organizamos tu crecimiento sin perder lo que te hizo crecer.</p>
+            </div>
+            <svg class="chevron" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="servicio-body">
+            <div class="servicio-col">
+              <h4>Qué resolvemos</h4>
+              <ul>
+                <li>Crecimos rápido y no está claro quién hace qué</li>
+                <li>Lo que funcionaba con 10 personas ya no funciona con 30</li>
+                <li>Cada gerente hace las cosas distinto</li>
+                <li>Calidad inconsistente por falta de procesos</li>
+              </ul>
+            </div>
+            <div class="servicio-col cta-flow">
+              <h4>Cómo trabajamos</h4>
+              <ul>
+                <li>Rediseño de estructura, roles y responsabilidades</li>
+                <li>Documentación de procesos clave</li>
+                <li>Sistema de gestión: cómo medimos, cómo reportamos</li>
+                <li>Delegación clara para líderes más seguros</li>
+              </ul>
+            </div>
+            <div class="servicio-col results">
+              <h4>Resultados esperables</h4>
+              <ul>
+                <li>Cada persona sabe su rol, su jefe y sus objetivos</li>
+                <li>Procesos que las nuevas personas pueden seguir</li>
+                <li>Calidad consistente y escalabilidad real</li>
+                <li>Crecimiento rentable, sin perder la sanidad del equipo</li>
+              </ul>
+              <p class="results-note">Rangos de referencia basados en proyectos previos; se acuerdan metas propias en cada empresa.</p>
+            </div>
+          </div>
+          <div class="servicio-cta"><a class="btn-primary" href="#contacto">Charla de diagnóstico gratis (30 min) →</a></div>
+        </details>
+
+      </div>
+    </div>
+  </div></div></section>
+
+  <!-- MÉTODO -->
+  <section id="metodo" class="reveal" aria-hidden="true"><div class="reveal-inner"><div class="reveal-pad">
+    <div class="wrap">
+      <div class="metodo-panel">
+        <div>
+          <span class="eyebrow">Método</span>
+          <h2>Acciones simples, realistas y cercanas.</h2>
+          <p style="margin-top:14px; color:var(--muted); font-size:15px;">Cinco pasos que van del diagnóstico a la implementación acompañada, sin frenar la operación mientras trabajamos.</p>
+        </div>
+        <div class="metodo-steps">
+          <div class="metodo-step"><span class="step-num">01</span><div><h4>Diagnóstico</h4><p>Relevamos el estado real de la operación y detectamos dónde se pierde margen y experiencia.</p></div></div>
+          <div class="metodo-step"><span class="step-num">02</span><div><h4>Riesgos</h4><p>Evaluamos riesgos operativos, financieros y de talento antes de mover una sola pieza.</p></div></div>
+          <div class="metodo-step"><span class="step-num">03</span><div><h4>Escucha</h4><p>Hablamos con quienes diseñan la estrategia y con quienes ejecutan los procesos todos los días.</p></div></div>
+          <div class="metodo-step"><span class="step-num">04</span><div><h4>Priorización</h4><p>Ordenamos las acciones por impacto y esfuerzo: primero lo que mueve el resultado.</p></div></div>
+          <div class="metodo-step"><span class="step-num">05</span><div><h4>Acompañamiento</h4><p>Implementamos junto al equipo, respetando el contexto, la cultura y la identidad de la empresa.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div></div></section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="reveal" aria-hidden="true"><div class="reveal-inner"><div class="reveal-pad">
+    <div class="wrap">
+      <div class="cta-band">
+        <span class="eyebrow">Contacto</span>
+        <h2>Empecemos con una charla de 30 minutos.</h2>
+        <p>Un diagnóstico y una lectura clara sobre tu operación actual, orientada a identificar oportunidades y establecer las prioridades que realmente hacen la diferencia.</p>
+        <div class="social-row">
+          <a href="https://wa.me/5491151489944" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+          <button type="button" id="openMailForm" aria-label="Escribir un mensaje">✉</button>
+          <a href="https://www.linkedin.com/in/mdelosmilagrosdefant" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: formulario de contacto por mail -->
+    <div class="mail-modal" id="mailModal" aria-hidden="true">
+      <div class="mail-modal-backdrop" id="mailModalBackdrop"></div>
+      <div class="mail-modal-card" role="dialog" aria-modal="true" aria-labelledby="mailModalTitle">
+        <button type="button" class="mail-modal-close" id="mailModalClose" aria-label="Cerrar">✕</button>
+        <h3 id="mailModalTitle">Escribinos</h3>
+        <p class="mail-modal-sub">Completá tus datos y se va a abrir tu programa de mail con el mensaje ya armado, listo para enviar a mariela.defant@hotmail.com.</p>
+        <form id="mailForm">
+          <label for="mfNombre">Nombre y Apellido</label>
+          <input type="text" id="mfNombre" name="nombre" required>
+          <label for="mfTelefono">Teléfono</label>
+          <input type="tel" id="mfTelefono" name="telefono" required>
+          <label for="mfMail">Mail</label>
+          <input type="email" id="mfMail" name="mail" required>
+          <label for="mfComentarios">Comentarios</label>
+          <textarea id="mfComentarios" name="comentarios" rows="4" required></textarea>
+          <button type="submit" class="btn-primary" style="margin-top:6px;">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div></div></section>
+
+  <!-- ACERCA DE MÍ -->
+  <section id="acerca" class="reveal" aria-hidden="true"><div class="reveal-inner"><div class="reveal-pad">
+    <div class="wrap about-grid">
+      <div class="about-photo" style="display:flex;align-items:center;justify-content:center;color:var(--white);font-family:'Lora',serif;font-size:20px;">Claria</div>
+      <div>
+        <span class="eyebrow">Acerca de</span>
+        <h2 style="font-size:clamp(26px,3vw,34px);">Mariela de los Milagros Defant</h2>
+        <div class="about-copy" style="margin-top:20px;">
+          <p>Más de 20 años en compañías multinacionales en roles de liderazgo, fusionando la lógica de las operaciones con la empatía del Customer Experience. Mi tesis profesional es simple: las organizaciones más rentables son las que conectan sus datos operativos con la experiencia de las personas.</p>
+          <p>Lideré migraciones internacionales de shared services y reingenierías completas, con hitos como +25% en productividad y -37% en costos. Más allá de los números, construyo culturas de servicio resilientes y preparadas para el futuro.</p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card"><b>+20</b><span>años en compañías multinacionales</span></div>
+          <div class="stat-card"><b>+25%</b><span>productividad lograda en reingenierías</span></div>
+          <div class="stat-card"><b>-37%</b><span>costos en procesos rediseñados</span></div>
+          <div class="stat-card"><b>B2B · B2C · B2G</b><span>recorrido de experiencia</span></div>
+        </div>
+        <ul class="check-grid">
+          <li>Liderar y acompañar personas</li>
+          <li>Diseñar estrategias operativas y de experiencia</li>
+          <li>Desarrollar talento y equipos de alto rendimiento</li>
+          <li>Transformar procesos complejos en soluciones simples</li>
+        </ul>
+        <p class="quote-line">Discreción y confidencialidad como valor garantizado.</p>
+      </div>
+    </div>
+  </div></div></section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Claria</span>
+    <span>clariaconsultora.com.ar</span>
+  </div>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  const SECTION_IDS = ['servicios','metodo','acerca','contacto'];
+
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    burgerBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  function setNavActive(id){
+    document.querySelectorAll('nav.links a.navlink').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  function closeSection(id){
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    sec.classList.remove('open');
+    sec.setAttribute('aria-hidden', 'true');
+  }
+
+  function openSection(id, { scroll = true } = {}){
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    SECTION_IDS.forEach(other => { if (other !== id) closeSection(other); });
+    sec.classList.add('open');
+    sec.setAttribute('aria-hidden', 'false');
+    setNavActive(id);
+    if (scroll){
+      window.setTimeout(() => {
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 260);
+    }
+  }
+
+  function toggleSection(id){
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    if (sec.classList.contains('open')){
+      closeSection(id);
+      setNavActive(null);
+    } else {
+      openSection(id);
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    if (SECTION_IDS.includes(id)){
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        toggleSection(id);
+        navLinks.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  document.querySelectorAll('.servicio').forEach(det => {
+    det.addEventListener('toggle', () => {
+      if (det.open) document.querySelectorAll('.servicio').forEach(o => { if (o !== det) o.open = false; });
+    });
+  });
+
+  const mailModal = document.getElementById('mailModal');
+  const openMailBtn = document.getElementById('openMailForm');
+  const closeMailBtn = document.getElementById('mailModalClose');
+  const mailBackdrop = document.getElementById('mailModalBackdrop');
+  const mailForm = document.getElementById('mailForm');
+
+  function openMailModal(){
+    mailModal.classList.add('open');
+    mailModal.setAttribute('aria-hidden', 'false');
+  }
+  function closeMailModal(){
+    mailModal.classList.remove('open');
+    mailModal.setAttribute('aria-hidden', 'true');
+  }
+  openMailBtn.addEventListener('click', openMailModal);
+  closeMailBtn.addEventListener('click', closeMailModal);
+  mailBackdrop.addEventListener('click', closeMailModal);
+
+  mailForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const nombre = document.getElementById('mfNombre').value.trim();
+    const telefono = document.getElementById('mfTelefono').value.trim();
+    const mail = document.getElementById('mfMail').value.trim();
+    const comentarios = document.getElementById('mfComentarios').value.trim();
+
+    const asunto = 'Consulta desde clariaconsultora.com.ar — ' + nombre;
+    const cuerpo =
+      'Nombre y Apellido: ' + nombre + '\n' +
+      'Teléfono: ' + telefono + '\n' +
+      'Mail: ' + mail + '\n\n' +
+      'Comentarios:\n' + comentarios;
+
+    const mailtoUrl = 'mailto:mariela.defant@hotmail.com'
+      + '?subject=' + encodeURIComponent(asunto)
+      + '&body=' + encodeURIComponent(cuerpo);
+
+    window.location.href = mailtoUrl;
+    closeMailModal();
+    mailForm.reset();
+  });
+</script>
+
+</body>
+</html>
