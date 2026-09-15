@@ -23,8 +23,12 @@ Guía de configuración para entornos de desarrollo y pase a producción.
 
 ---
 
-## 🌍 Entorno de Producción (Target)
+## 🌍 Entorno de Producción (Hostinger)
 * **Dominio:** `clariaconsultora.com.ar`
-* **DNS:** Configuración de registros A apuntando a la IP pública del servidor de producción.
-* **Web Server:** Nginx con proxy reverso o hosting web estático/Node.js, con soporte HTTP/2 y certificados SSL Let's Encrypt automatizados.
-* **Optimización de Producción:** Cache-Control headers, compresión Gzip/Brotli y minificación de assets.
+* **Proveedor:** Hostinger Cloud / Web Hosting
+* **Repositorio GitHub:** `https://github.com/elbuje/clariaconsultora.git` (rama `main`)
+* **Pipeline CI/CD (AutoDeploy):**
+  - Webhook ID: `679897097`
+  - URL Webhook Hostinger: `https://webhooks.hostinger.com/deploy/738ed9d296f4308669ee4d84a2a9eda3`
+  - Evento: `push` a la rama `main`
+  - Cada vez que se hace `git push origin main`, GitHub notifica a Hostinger y hPanel despliega automáticamente los cambios en `public_html`.
